@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remplir un Dossier medical</title>
+          <style>
+          body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+
+          h1 {
+            color: #333;
+            text-align: center;
+          }
+
+          form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          }
+
+          label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+          }
+
+          input,textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+          }
+
+          p {
+            font-weight: bold;
+            color: #333;
+            font-size: 20px;
+          }
+
+          input[type="submit"],
+          input[type="reset"] {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+
+          input[type="submit"]:hover,
+          input[type="reset"]:hover {
+            background-color: #45a049;
+          }
+        </style>
+</head>
+<body>
+   <div>
+    <header><h1>Remplir le dossier medical de votre patient</h1></header>
+          <form method="POST">
+            {%csrf_token%}
+            <div>
+            <p>Nom et prenom du patient:</p>
+              <label for="Nom">Nom</label>
+              <input type="text" id="Nom" name="Nom" required />
+            </div>
+            <div>
+              <label for="Prenom">Prenom</label>
+              <input type="text" id="Prenom" name="Prenom" required />
+            </div>
+            <div>
+            <p>infos medical sur le patient:</p>
+              <label for="diagnostic">diagnostique</label>
+              <textarea id="diagnostic" name="diagnostic" cols="51" rows="3" >
+              </textarea>
+            </div>
+            <div>
+              <label for="traitement">Traitement proposé</label>
+              <input type="Text" id="traitement" name="traitement" />
+            </div>
+           <div>
+              <label for="resultat">Resultat</label>
+              <input type="Text" id="resultat" name="resultat" />
+            </div>
+            <div>
+              <p>Nom et prenom du medecin:</p>
+              <label for="nomMed">Nom medecin</label>
+              <input type="Text" id="nomMed" name="nomMed" required />
+            </div>
+            <div>
+              <label for="prenomMed">prenom medecin </label>
+              <input type="Text" id="prenomMed" name="prenomMed" required />
+            </div>
+            <input type="submit" value="Enregistrer" />
+            <input type="reset" value="Annuler" />
+          </form>
+</body>
+</html>

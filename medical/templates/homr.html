@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;600&family=Kalnia:wght@300&display=swap");
+      body {
+        margin: 0px;
+        background: #87bba2;
+      }
+
+      .element {
+        width: 200px;
+        height: 200px;
+        background-color: #0d1b2a;
+        color: #c6ac8f;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        transition-duration: 0.5s;
+        transition-delay: 0s;
+        transition-property: background-color, cursor;
+      }
+      .contain {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-around;
+      }
+      .title {
+        text-align: center;
+        background-color: #0d1b2a;
+        color: #c6ac8f;
+        margin-top: 0px;
+        font-family: "Kalnia", serif;
+      }
+      h1 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+      li {
+        font-family: monospace;
+        display: inline-block;
+        margin: 10px;
+        padding: 10px;
+        color: #c6ac8f;
+        font-size: 20px;
+        transition-duration: 0.8s;
+        transition-delay: 0s;
+        transition-property: color, background-color;
+        transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+      }
+      li:hover {
+        color: #6a040f;
+        background-color: #778da9;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+      ul {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0px;
+      }
+      span {
+        margin-left: 63px;
+        margin-bottom: 13px;
+        font-size: 30px;
+        color: #c6ac8f;
+        font-family: "Kalnia", serif;
+      }
+      a {
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .element:hover {
+        background-color: #778da9;
+        color: #6a040f;
+
+        cursor: pointer;
+      }
+      .divn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #0d1b2a;
+        margin-top: 0px;
+        margin-bottom: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="title">
+      <h1>eSanté</h1>
+    </div>
+    <div class="divn">
+      <span>departement ORL</span>
+      <ul>
+        <li>Home</li>
+        <li>fonctionalites</li>
+        <li>database</li>
+        <li>plus</li>
+      </ul>
+    </div>
+    <div class="contain">
+      <a href="http://127.0.0.1:8000/home/rendezvous">
+        <div class="element">Rendez-vous</div></a
+      >
+      <a href="http://127.0.0.1:8000/Login/"
+        ><div class="element">Medcin</div></a
+      >
+
+      <a href="http://127.0.0.1:8000/home/Login/medecin/consulterRdvMedecin">
+        <div class="element">Patient</div>
+      </a>
+    </div>
+  </body>
+</html>
