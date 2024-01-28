@@ -4,9 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
 # Create your views here.
-def signup(request):
-    form= UserCreationForm() 
-    return render(request,'signup.html',{'form':form})
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -22,4 +20,4 @@ def login_view(request):
 
 def log_out(request):
     logout(request)
-    return redirect('/home/')
+    return redirect('http://127.0.0.1:8000/')

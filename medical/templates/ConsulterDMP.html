@@ -6,11 +6,10 @@
     <title>Consulter rdv</title>
     <style>
       .button {
-         background-color: #82cfd8;
-        color: #fff;    
         width: 155px;
         height: 42px;
-        
+         background-color: #82cfd8;
+        color: #fff;    
         text-align: center;
         margin: 30px auto;
         border-radius: 20px;
@@ -33,7 +32,8 @@
         margin-top: auto;
       }
       th{
-        background-color: rgb(89, 214, 121);
+         background-color: #82cfd8;
+            
       }
         body {
             font-family: Arial, sans-serif;
@@ -72,52 +72,38 @@
             border: 1px solid #ccc;
             border-radius: 4px;
           }
-    input[type="submit"],
-          input[type="reset"] {
-             background-color: #82cfd8;
-        color: #fff;    
-            padding: 10px 15px;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-          }
 
-          input[type="submit"]:hover,
-          input[type="reset"]:hover {
-            background-color: #45a049;
-          }
           p {
             font-weight: bold;
             color: #333;
             font-size: 20px;
+            text-align:center;
           }
           .tab{
             display: flex;
             justify-content: center;
             margin: 20px auto;
           }
+          input[type="submit"]{
+            cursor:pointer;
+          }
 
     </style>
   </head>
   <body>
-    <div class="h1"><h1>Consulter vos rendez-vous avec les patients</h1></div>
+    <div class="h1"><h1>Consulter votre Dossier Medical</h1></div>
 
     <div>
       <form method="POST">
          {%csrf_token%}
         <div>
-        <label for="nn">Votre nom</label>
-        <input type="text" name="nom" id="nn"  placeholder="premiere lettre majuscule: Nom"/ required>
-        </div>
-        <div>
-         <label for="nn">Votre prenom</label>
-        <input type="text" name="prenom" id="nn"  placeholder="premiere lettre majuscule: Prenom"/ required>
+        <label for="nn">Numero de securité sociale</label>
+        <input type="number" name="nss" id="nn" required />
         </div>
         <input type="submit" value="Rechercher" />
       </form>
-    </div>
-       {% if ok == 0 %}
-         {% if f == 0 %} 
+       {% if p == 0 %}
+         {% if d == 0 %} 
          <div class="tab">
       <table
         border="1"
@@ -132,19 +118,25 @@
             color: lavenderblush;
             border-color: #2c3a47;>
        </thead>
-          <th>nom patient</th>
-          <th>prenom patient</th>
+          <th>nss</th>
+          <th>nom</th>
+          <th>prenom</th>
           <th>date naissance</th>
-          <th>date rendez-vous</th>
-          <th>heure rendez-vous</th>
+          <th>diagnostique</th>
+          <th>traitement</th>
+          <th>resultat</th>
+          <th>medecin redigeur</th>
            <tbody>
           <tr>
-            {% for rdv in rdvs  %}
-            <td>{{rdv.prendre.nomP}}</td>
-            <td>{{rdv.prendre.prenomP}}</td>
-            <td>{{rdv.prendre.dateN}}</td>
-            <td>{{rdv.dateRdv}}</td>
-            <td>{{rdv.heureRdv}}</td>
+            {% for dossier in dossiermeds  %}
+            <td>{{dossier.correspond.nss}}</td>
+            <td>{{dossier.correspond.nomP}}</td>
+            <td>{{dossier.correspond.prenomP}}</td>
+            <td>{{dossier.correspond.dateN}}</td>
+            <td>{{dossier.diagnostic}}</td>
+            <td>{{dossier.traitement}}</td>
+            <td>{{dossier.resultat}}</td>
+            <td>{{dossier.estlier.nomM}} {{dossier.estlier.prenomM}}</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -152,18 +144,18 @@
   </div class="tab">
         {% else %} 
       <div>
-        <p>Vous avez aucun rendez-vous avec aucun patient </p>
-        <a href="http://127.0.0.1:8000/home/Login/medecin"><div class="button">revenir</div></a>
+        <p>Vous avez pas encore un dossier medical</p>
+        <a href="http://127.0.0.1:8000/home/rendezvous/prendre"><div class="button">inscriez vous</div></a>
       </div>
      {% endif %}
-    {% endif %} 
-    <div class="backhome">
-        <a href="http://127.0.0.1:8000/home/medecin">
-          <div class="button">get back</div>
-        </a>
+    {% elif p == 1 %}
+      <div>
+        <p>Vous n'etes pas inscris appuyer la pour inscrire</p>
+        <a href="http://127.0.0.1:8000/home/rendezvous/prendre"><div class="button">inscriez vous</div></a>
       </div>
+        {% endif %}
       <div class="backhome">
-        <a href="http://127.0.0.1:8000">
+        <a href="http://127.0.0.1:8000/">
           <div class="button">back to home</div>
         </a>
       </div>

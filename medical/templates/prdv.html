@@ -57,17 +57,25 @@
 
           input[type="submit"],
           input[type="reset"] {
-            background-color: #4caf50;
+            background-color: #82cfd8;
             color: #fff;
             padding: 10px 15px;
             border: none;
-            border-radius: 4px;
+            border-radius: 20px;
             cursor: pointer;
           }
 
           input[type="submit"]:hover,
           input[type="reset"]:hover {
             background-color: #45a049;
+          }
+          .radio {
+            display: flex;
+            align-items: center;
+            flex-direction: column-reverse;
+          }
+          input[type="radio"] {
+            margin-right: 10px; /* Ajustez la marge à votre convenance */
           }
         </style>
       </head>
@@ -118,16 +126,16 @@
             </div>
             <div class="check-medecin">
               <p>Choisissez le medecin</p>
-              <div>
-                <input id="fii" type="radio" name="doctor" value="bourehli" />
+              <div class="radio">
+                <input id="fii" type="radio" name="doctor" value="Bourehli" />
                 <label for="fii">Dr bourehli anissa</label>
               </div>
-              <div>
+              <div class="radio">
                 <input id="garss" type="radio" name="doctor" value="Boukala" />
                 <label for="garss">Dr boukala sidali </label>
               </div>
-              <div>
-                <input id="fii" type="radio" name="doctor" value="aissat" />
+              <div class="radio">
+                <input id="fii" type="radio" name="doctor" value="Aissat" />
                 <label for="fii">Dr aissat mohamed</label>
               </div>
             </div>

@@ -18,7 +18,7 @@
       }
 
       header {
-        background-color: #333;
+        background-color: #084c64;
         color: #fff;
         text-align: center;
         padding: 10px;
@@ -31,14 +31,14 @@
       }
 
       .c1 {
-        background-color: rgb(107, 224, 152);
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         width: 300px;
-        color: #631f1f;
+        background-color: #82cfd8;
+        color: #fff;
         height: 300px;
         border-radius: 30px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -65,7 +65,7 @@
     </style>
   </head>
   <body>
-    <header></header>
+    <header><h2>Gestion des rendez-vous</h2></header>
 
     <div class="container">
       <a href="http://127.0.0.1:8000/home/rendezvous/prendre">
@@ -77,6 +77,11 @@
       <a href="http://127.0.0.1:8000/home/rendezvous/consulter"
         ><div class="c1">
           <i class="fas fa-calendar-check"></i> Consulter RDV
+        </div></a
+      >
+      <a href="http://127.0.0.1:8000/home/rendezvous/annuler"
+        ><div class="c1">
+          <i class="fas fa-calendar-times"></i>Annuler un RDV
         </div></a
       >
     </div>

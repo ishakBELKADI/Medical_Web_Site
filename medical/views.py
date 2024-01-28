@@ -65,20 +65,21 @@ def Prndv(request):
 def Crndv(request):
    ok=1
    if request.method == 'POST':
-      print('on est la')
-      ok=0
+      nonInscris=0
+      r=0;
       nss=request.POST['nss']
       query=Patient.objects.filter(nss=nss)
-      if query.exists():
-         nonInscris=0
-         patient=query.first()
-         rdvs=Rdv.objects.filter(prendre=patient)
-         if rdvs.exists():
-           return render(request,'consulterRdv.html',{'rdvs':rdvs, 'patient':patient , 'ok' : ok,'nonInscris':nonInscris})
-      else:
+      if query.exists()==False:
          nonInscris=1
-         return render(request,'consulterRdv.html',{'ok':ok , 'nonInscris':nonInscris})
-           
+         return render(request,'consulterRdv.html',{'nonInscris':nonInscris})
+      patient=query.first()
+      rdvs=Rdv.objects.filter(prendre=patient)
+      if rdvs.exists()==False:
+         r=1
+         return render(request,'consulterRdv.html',{'nonInscris':nonInscris , 'r':r})
+      else:
+         
+         return render(request,'consulterRdv.html',{'r':r , 'nonInscris':nonInscris , 'r':r , 'patient':patient , 'rdvs':rdvs})
    return render(request,'consulterRdv.html',{'ok':ok})
 
 
@@ -129,6 +130,45 @@ def CrdvMedecin(request):
       return render(request,'rdvMedecin.html',{'rdvs':rdvs , 'f':f , 'ok':ok})
       
    return render(request,'rdvMedecin.html',{'ok':ok})
+
+def Arndv(request):
+  
+   if request.method=='POST':
+      p=0
+      rdv=0
+      nss=request.POST['nss']
+      date=request.POST['date']
+      heure=request.POST['heure']
+      objpatient=Patient.objects.filter(nss=nss)
+      
+      if(objpatient.exists()==False):
+         p=1;
+         return render(request,'annuletRDV.html',{'p':p , 'rdv':rdv})
+      objrdv= Rdv.objects.filter( dateRdv=date , heureRdv=heure , prendre=objpatient.first())
+      
+      if objrdv.exists()==False:
+         rdv=1
+         return render(request,'annuletRDV.html',{'p':p , 'rdv':rdv})
+      objrdv.first().delete()
+      return render(request,'annuletRDV.html',{'p':p , 'rdv':rdv})
+   return render(request,'annuletRDV.html')
+
+def dossierMed_view(request):
+   if request.method=='POST':
+      p=0
+      d=0
+      nss=request.POST['nss']
+      objpatient=Patient.objects.filter(nss=nss)
+      if objpatient.exists()==False:
+         p=1
+         return render(request,'ConsulterDMP.html', {'dossiermeds':dossiermeds, 'p':p})
+      dossiermeds=DossierMedical.objects.filter(correspond=objpatient.first())
+      if dossiermeds.exists()==False:
+         d=1
+      return render(request,'ConsulterDMP.html', {'dossiermeds':dossiermeds, 'd':d , 'p':p})
+      
+   return render(request,'ConsulterDMP.html')
+   
       
       
    
