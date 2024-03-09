@@ -2,6 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from .models import DossierMedical, Medecin, Patient,Rdv
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from accounts.views import username
+
 # Create your views here.
 
 def homepage(request):
@@ -83,8 +86,11 @@ def Crndv(request):
    return render(request,'consulterRdv.html',{'ok':ok})
 
 
-def medecin_view(request):
-   return render(request,'medcin.html')
+# def medecin_view(request):
+#     user=User.objects.get(request.user.username)
+#     print(user)
+#     print(str(request.user.username))
+#     return render(request,'medcin.html')
 
 
 def remplirDM(request):
@@ -114,8 +120,21 @@ def remplirDM(request):
    return render(request,'RemplirDM.html')
 
 def CrdvMedecin(request):
-   ok=1 
+   exist= 0
    f=0
+   print("on est la")
+   print(request.session['current_username'])
+  
+   user=User.objects.get(username=request.session['current_username'])
+   print(user)
+   querymed=Medecin.objects.filter(nomM=user)
+   med=querymed.first()
+   rdvs= Rdv.objects.filter(estchargéMed=med)
+   if rdvs.exists()==False:
+         f=1
+   return render(request,'rdvMedecin.html',{'rdvs':rdvs , 'f':f})
+   ok=1 
+   
    if request.method=='POST':
       ok=0
       nomMed=request.POST["nom"]
@@ -169,7 +188,8 @@ def dossierMed_view(request):
       
    return render(request,'ConsulterDMP.html')
    
-      
+
+
       
    
       

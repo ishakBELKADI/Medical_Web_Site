@@ -33,7 +33,9 @@
         margin-top: auto;
       }
       th{
-        background-color: rgb(89, 214, 121);
+         background-color: #82cfd8;
+       
+        
       }
         body {
             font-family: Arial, sans-serif;
@@ -102,22 +104,11 @@
   <body>
     <div class="h1"><h1>Consulter vos rendez-vous avec les patients</h1></div>
 
-    <div>
-      <form method="POST">
-         {%csrf_token%}
-        <div>
-        <label for="nn">Votre nom</label>
-        <input type="text" name="nom" id="nn"  placeholder="premiere lettre majuscule: Nom"/ required>
-        </div>
-        <div>
-         <label for="nn">Votre prenom</label>
-        <input type="text" name="prenom" id="nn"  placeholder="premiere lettre majuscule: Prenom"/ required>
-        </div>
-        <input type="submit" value="Rechercher" />
-      </form>
-    </div>
-       {% if ok == 0 %}
+    
+
          {% if f == 0 %} 
+         <div class="h1"><h1>Voici vos rendez-vous:</h1></div>
+
          <div class="tab">
       <table
         border="1"
@@ -128,7 +119,7 @@
         style="margin: auto"
       >
        <thead  
-         background-color: #2c3a47;
+          background-color: #2c3a47;
             color: lavenderblush;
             border-color: #2c3a47;>
        </thead>
@@ -152,11 +143,11 @@
   </div class="tab">
         {% else %} 
       <div>
-        <p>Vous avez aucun rendez-vous avec aucun patient </p>
+       <h1 class="h1"><p>Vous avez aucun rendez-vous avec aucun patient </p></h1>
         <a href="http://127.0.0.1:8000/home/Login/medecin"><div class="button">revenir</div></a>
       </div>
      {% endif %}
-    {% endif %} 
+   
     <div class="backhome">
         <a href="http://127.0.0.1:8000/home/medecin">
           <div class="button">get back</div>
